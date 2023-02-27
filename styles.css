@@ -1,0 +1,35 @@
+.main {
+    display: flex;
+}
+
+#container {
+    width: 200px;
+    height: 100vh;
+}
+
+.output {
+    height: 100vh;
+    width: 1000px;
+}
+
+label {
+    display: block;
+}
+
+#price {
+    display: block;
+}
+
+.book {
+    width: 160px;
+}
+
+.book-img {
+    width: 70%;
+    display: block;
+}
+
+#books {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}

@@ -1,0 +1,49 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.input{
+    width: fit-content;
+    height: 100vh;
+    background-color: #f0f0f0;
+    border: gray solid 1px;
+    border-radius: 2px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.output{
+    width: 100%;
+    height: 100vh;
+    background-color: #f0f0f0;
+    padding: 1rem;
+}
+
+.books{
+    height: fit-content;
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(5, 15%);
+    grid-template-rows: auto;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.book{
+    width: 100%;
+    height: fit-content;
+    background-color: #fff;
+    padding: 4px;
+}
+.book-btns{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.book-img{
+    width: 50%;
+    margin: 1rem 0 1rem 2.5rem;
+    opacity: 0.5;
+}

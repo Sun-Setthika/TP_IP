@@ -1,0 +1,34 @@
+<html lang="en">
+    <head>
+        <title>Document</title>
+        <script src="tailwind.js"></script>
+    </head>
+    <body>
+        <div class="w-1/2 h-fit">
+            <div class="title w-full h-fit text-center font-bold">To-do List with localstorage</div>
+            <div class="input bg-slate-200 flex items-center justify-center h-20 rounded-xl p-4">
+                <div class="input-title w-1/4 ml-3 mr-3">
+                    <div>Task title</div>
+                    <input type="text" id="title" class="h-10 w-full border-black border-2 rounded-xl">
+                </div>
+                <div class="input-assignee w-1/4 ml-3 mr-3">
+                    <div>Assignee</div>
+                    <input type="text" id="assignee" class="h-10 w-full border-black border-2 rounded-xl">
+                </div>
+                <div class="input-deadline w-1/4 ml-3 mr-3">
+                    <div>Deadline</div>
+                    <input type="date" id="deadline" class="h-10 w-full border-black border-2 rounded-xl">
+                </div>
+                <div class="input-deadline w-fit ml-3 mr-3">
+                    <div>-</div>
+                    <input type="button" id="add-btn" class="h-10 w-16 bg-blue-700 rounded-xl text-cyan-50" value="Add">
+                </div>
+            </div>
+
+            <div id="list-wrapper"></div>
+
+            
+        </div>
+        <script src="javascript.js"></script>
+    </body>
+</html>

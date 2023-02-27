@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List with session storage</title>
+
+    <style>
+        .container {
+            border: 3px solid black;
+            padding: 10px;
+            width: 600px;
+            height: fit-content;
+        }
+
+        .title {
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .input {
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(205, 204, 204);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        #task,
+        #assignee {
+            width: 150px;
+            height: 35px;
+        }
+
+        #dateline {
+            height: 60%;
+            width: 80%;
+           
+        }
+
+        .date {
+            height: 35px;
+            width: 150px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .box {
+            border-radius: 10px;
+            border: none;
+        }
+
+        label {
+            font-size: 14px;
+        }
+
+        #add {
+            background-color: rgb(0, 0, 200);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            width: 60px;
+            height: 35px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn-add {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: space-around;
+            border: 1px solid rgb(173, 173, 173);
+            margin-top: 10px;
+            border-radius: 10px;
+            height: 35px;
+        }
+
+        .tilte-info,
+        .name-info {
+            width: 150px;
+        }
+
+        .row {
+            padding: 10px;
+            display: flex;
+            border: 2px solid rgb(173, 173, 173);
+            justify-content: space-around;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+        .row:last-child {
+            margin-bottom: 40px;
+        }
+
+        .row:hover {
+            border-color: blue;
+            border-width: 2px;
+        }
+
+        .column {
+            width: 150px;
+        }
+
+        .delete-container {
+            width: 60px;
+        }
+
+        .delete {
+            background-color: rgb(170, 0, 0);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="title">To-do List with Session Storage</p>
+        <form class="input">
+            <div>
+                <label for="task">Task title</label><br>
+                <input id="task" name="task" type="text" class="box" placeholder="Title">
+            </div>
+            <div>
+                <label for="assignee">Assignee</label><br>
+                <input id="assignee" name="assignee" type="text" class="box" placeholder="John">
+            </div>
+            <div>
+                <label for="dateline">Dateline</label><br>
+                <div class="date box">
+                    <input id="dateline" name="dateline" type="date">
+                </div>
+                
+            </div>
+            <div class="btn-add">
+                <button id="add">Add</button>
+            </div>   
+        </form>
+        <div id="list-wrapper"></div>
+    </div>
+
+
+    <script>
+        var listWrapperEle = document.getElementById("list-wrapper")
+        var addBtnEle = document.getElementById("add")
+        var task = document.getElementById("task")
+        var assignee = document.getElementById("assignee")
+        var date = document.getElementById("dateline")
+        var taskArr = getAllStorage()
+
+        addBtnEle.addEventListener("click", () => {
+            const date1 = new Date();
+            id = date1.getTime();
+            add(id, task.value, assignee.value, date.value) 
+        })
+
+        function add(idValue, taskValue, assigneeValue, dateValue) {
+            let task = {
+                id: idValue,
+                task: taskValue,
+                assignee: assigneeValue,
+                date: dateValue
+            }
+            taskArr.push(task)
+            sessionStorage.setItem(idValue+"", JSON.stringify(task))
+            task.value = ""
+            assignee.value = ""
+            date.value = ""
+
+            renderList()
+        }
+
+        function renderList() {
+            let listContent = ""
+            taskArr.forEach((task, index) => {
+                listContent += `
+                    <div class="row">
+                            <div class="column">
+                                ${task.task}
+                            </div>
+                            <div class="column">
+                                ${task.assignee}
+                            </div>
+                            <div class="column">
+                                ${task.date}
+                            </div>
+                            <div class="delete-container">
+                                <button id="${index}" class="delete" onclick="remove('${task.id}')">Delete</button>
+                            </div>
+                    </div>
+                    `;
+            }) 
+            listWrapperEle.innerHTML = listContent;
+        }
+
+        function remove(id) {
+            sessionStorage.removeItem(id);
+            taskArr = getAllStorage()
+            renderList();
+        }
+
+        function getAllStorage() {
+            let getSessionStorageKey = [];
+            let temporaryList = [];
+            for(i=0; i<sessionStorage.length; i++) {
+                getSessionStorageKey.push(sessionStorage.key(i))
+            }
+
+            for(i=0; i<getSessionStorageKey.length; i++) {
+                if (getSessionStorageKey[i].length == 13) {
+                    let task = JSON.parse(sessionStorage.getItem(getSessionStorageKey[i]))
+                    temporaryList.push(task);
+                }
+                
+            }
+
+            temporaryList.sort( (a,b) => a.id - b.id );
+            return temporaryList;
+        }
+
+        renderList();
+    </script>
+
+</body>
+</html>
