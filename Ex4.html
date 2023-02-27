@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University List </title>
+    <link rel="stylesheet" href="Ex4style.css">
+    <script src="tailwind.js"></script>
+    
+   
+</head>
+<body  class="w-[screen] h-screen mt-11">
+    <div class="container border-black border-2 w-[screen] m-auto">
+        <div class="flex justify-center mt-8 h-14">
+            <img class="w-[100px] h-[100px]" src="image/university.png">
+        </div>
+        <h1 class="text-2xl font-bold flex justify-center  h-14">Which Univ. do you want to study?</h1>
+        <div class="btn">
+            <!-- <input type="text" id="int1"  class="border border-slate-500 rounded-md p-2"> -->
+            <label for="country">Country</label><span style="color: red !important; display: inline; float: none;">*</span>      
+        
+            <select id="country" name="country" class="form-control">
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Åland Islands">Åland Islands</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+                <option value="American Samoa">American Samoa</option>
+                <option value="Andorra">Andorra</option>
+                <option value="Angola">Angola</option>
+                <option value="Anguilla">Anguilla</option>
+                <option value="Antarctica">Antarctica</option>
+                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Armenia">Armenia</option>
+                <option value="Aruba">Aruba</option>
+                <option value="Australia">Australia</option>
+                <option value="Austria">Austria</option>
+                <option value="Azerbaijan">Azerbaijan</option>
+                <option value="Bahamas">Bahamas</option>
+                <option value="Bahrain">Bahrain</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Barbados">Barbados</option>
+                <option value="Belarus">Belarus</option>
+                <option value="Belgium">Belgium</option>
+                <option value="Belize">Belize</option>
+                <option value="Benin">Benin</option>
+                <option value="Bermuda">Bermuda</option>
+                <option value="Bhutan">Bhutan</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                <option value="Botswana">Botswana</option>
+                <option value="Bouvet Island">Bouvet Island</option>
+                <option value="Brazil">Brazil</option>
+                <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                <option value="Brunei Darussalam">Brunei Darussalam</option>
+                <option value="Bulgaria">Bulgaria</option>
+                <option value="Burkina Faso">Burkina Faso</option>
+                <option value="Burundi">Burundi</option>
+                <option value="Cambodia">Cambodia</option>
+                <option value="Cameroon">Cameroon</option>
+                <option value="Canada">Canada</option>
+                <option value="Cape Verde">Cape Verde</option>
+                <option value="Cayman Islands">Cayman Islands</option>
+                <option value="Central African Republic">Central African Republic</option>
+                <option value="Chad">Chad</option>
+                <option value="Chile">Chile</option>
+            </select>
+            <button onclick="display()">   
+                Click me
+            </button>
+
+            
+        </div>
+        <div class="flex" id="f">
+            
+        </div>
+        
+    </div>
+
+    
+
+    <script>
+        let tous = document.getElementById('f');
+
+        function display(){
+            let country = document.getElementById('country').value;
+
+            let arr = [];
+            let url = `http://universities.hipolabs.com/search?country=${country}`;
+            fetch(url).then(async (res)=>{
+                let data = await res.json();
+
+                data.forEach((university)=>{
+                    let name = university.name;
+                    let country = university.country;
+                    let code = university.alpha_two_code;
+                    let link = university.web_pages[0];
+                    
+                    arr += `
+                        <div class="block">
+                                <div class="school"><b>${name}</b></div>
+                                <br>
+                                <div class="country">(${country} - ${code})</div>
+                                <br>
+                                <div class="link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon">
+  <path d="M15.75 8.25a.75.75 0 01.75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 11-.992-1.124A2.243 2.243 0 0015 9a.75.75 0 01.75-.75z" />
+  <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM4.575 15.6a8.25 8.25 0 009.348 4.425 1.966 1.966 0 00-1.84-1.275.983.983 0 01-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 012.328-.377L16.5 15h.628a2.25 2.25 0 011.983 1.186 8.25 8.25 0 00-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 01-1.161.886l-.143.048a1.107 1.107 0 00-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 01-1.652.928l-.679-.906a1.125 1.125 0 00-1.906.172L4.575 15.6z" clip-rule="evenodd" />
+</svg>
+
+${link}</div>         
+                        </div>
+                        `;
+                }  
+                );
+                tous.innerHTML = arr;  
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <script src="tailwind.js"></script>
+    <link rel="stylesheet" href="style.css" >
+</head>
+<body>
+    <div class="container">
+        <div class="input w-[200px] h-[100vh] bg-gray-100 border-black border-2 mt-2 ml-2 p-2">
+            <div>Name:</div>
+            <input class="border border-gray-700 rounded-sm" type="text" id="name" >
+            <div>Price:</div>
+            <input class="border border-gray-700 rounded-sm" type="text" id="price">
+            <div>Category ID:</div>
+            <input class="border border-gray-700 rounded-sm" type="text" id="id">
+            <div>
+                <button onclick="display()" class="border border-gray-700 rounded-sm bg-slate-400 mt-2 p-1">Add</button>
+            </div>
+        </div>
+
+        <div id="color-list" data-id="1" class="outp"></div>
+    </div>
+
+    <!-- <div class="tab">
+
+    </div> -->
+    <div style="
+    
+    ">
+
+    </div>
+
+    
+    
+    
+    
+
+    <script>
+        let colorList = document.getElementById("color-list");
+
+    
+        
+        function openNewTab(data1,data2,data3) {
+            let newTab = window.open();
+            newTab.document.write(`<div id="new" style="
+                margin-top: 0px;
+                border: solid 6px black;
+                width: 600px;
+                height: 500px;
+                text-align: center;
+
+            ">
+                <div style="
+                    background-color: cadetblue;
+                    width: 600px;
+                    height: 150px;
+                    margin-top: 0px;
+                    position: fixed;
+                    margin-top: 0px;
+                ">
+                    <div><h2>${data1}</h2></div>
+                    <div><p>${data2}</p></div>
+                    <div><p>Resize the browser window to see that this page is responsive by the way</p></div>
+                </div>
+                <div style="
+                    margin-top: 150px
+                ">
+                    <div>${data2}</div>
+                    <div>
+                        <img src="${data3}">    
+                    </div>
+                </div>
+            </div>`);
+        }
+        
+
+        function display(){
+
+           // let bookId = document.getElementById("id");
+           let arr = [];
+           // let url = `jsonplaceholder.typicode.com/photos`;
+            fetch('https://jsonplaceholder.typicode.com/photos')
+                .then(async (res)=>{
+
+                
+                let data = await res.json();
+
+
+                 data.forEach(data => {
+                    arr += `<div class="item">
+                                <div class="image">
+                                    <image src="${data.thumbnailUrl}">
+                                </div>
+                                <div class="info">
+                                    <p>${data.title}</p>
+                                    <p>${data.id}</p>
+                                    <p>Album id: ${data.albumId}</p>
+                                    <a href="" onclick="openNewTab('${data.title}', '${data.id}', '${data.thumbnailUrl}')">see</a>
+                                </div>
+                            </div>
+                        `
+                 });
+                 colorList.innerHTML = arr;
+            })
+        }
+        
+
+    </script>
+    
+</body>
+</html>

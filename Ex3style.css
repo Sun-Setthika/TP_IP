@@ -1,0 +1,81 @@
+.border{
+    border: 5px solid black;
+    width: 700px;
+    height: 500px;
+}
+
+.result{
+    border: 2px white;
+    height: 200px;
+    width: 300px;
+    margin-top: 20px;
+    margin-left: 190px;
+}
+
+.planet{
+    margin-left: 290px;
+}
+
+.ele{
+    margin-left: 170px;
+    color: orange;
+}
+
+.titre{
+    margin-left: 210px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.int{
+    margin-left: 190px;
+}
+
+.btn{
+    background-color: #1294e4;
+    border-color: white;
+    border-radius: 10px;
+    width: 75px;
+    height: 30px;
+    color: white;
+}
+
+#value{
+    height: 25px;
+    border-radius: 7px;
+    border: 1px solid gray;
+    width: 220px;
+}
+
+.b1{
+    margin-top: 3px;
+    border: solid gray 1px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: rgb(239, 237, 237);
+}
+
+#kh{
+    margin-top: 10px;
+    margin-left: 10px;
+
+}
+
+#ls{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#vn{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#th{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#hu{
+    margin-top: 10px;
+    margin-left: 10px;
+}

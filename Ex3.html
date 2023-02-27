@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I know your home</title>
+    <link rel="stylesheet" href="Ex3style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Indie+Flower&family=Shantell+Sans:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="border">
+        <img src="image/earth.png" alt="" width="100px" height="100px" class="planet">
+        <h1 class="titre">I know your Home</h1>
+        <div>
+            <div class="int">
+                <input type="text" placeholder="Tell me your first name" id="value">
+                <button onclick="display()" class="btn">Guess</button>
+            </div>
+
+            <div class="result">
+                <div class="b1">
+                    <b> <span id="kh"> KH  </span> </b>
+                    <b><span id="pro_kh" class="ele">PRO_KH</span></b> 
+                </div>
+
+                <div class="b1">
+                    <b><span id="ls"> LS  </span></b> 
+                    <b><span id="pro_ls" class="ele">PRO_LS</span></b> 
+                </div>
+
+                <div class="b1">
+                    <b><span id="vn"> VN  </span></b> 
+                    <b><span id="pro_vn" class="ele">PRO_VN</span></b> 
+                </div>
+
+                <div class="b1">
+                    <b><span id="th"> TH </span></b> 
+                    <b><span id="pro_th" class="ele">PRO_TH</span></b> 
+                </div>
+
+                <div class="b1">
+                    <b><span id="hu"> HU </span></b>
+                    <b><span id="pro_hu" class="ele"> PRO_HU</span></b> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        let khEle = document.getElementById("kh");
+        let khElePro = document.getElementById("pro_kh");
+
+        let lsEle = document.getElementById("ls");
+        let lsElePro = document.getElementById("pro_ls");
+
+
+        let vnEle = document.getElementById("vn");
+        let vnElePro = document.getElementById("pro_vn");
+
+
+        let thEle = document.getElementById("th");
+        let thElePro = document.getElementById("pro_th");
+
+
+        let huEle = document.getElementById("hu");
+        let huElePro = document.getElementById("pro_hu");
+
+
+        function display(){
+
+            let nom = document.getElementById('value').value;
+            const url = `https://api.nationalize.io/?name=${nom}`
+            fetch(url).then(async (res)=>{
+                let data = await res.json();
+
+
+                khEle.innerHTML = data.country[0].country_id;
+                khElePro.innerText = data.country[0].probability;
+
+                lsEle.innerHTML = data.country[1].country_id;
+                lsElePro.innerHTML = data.country[1].probability;
+
+                vnEle.innerHTML = data.country[2].country_id;
+                vnElePro.innerHTML = data.country[2].probability;
+
+                thEle.innerHTML = data.country[3].country_id;
+                thElePro.innerHTML = data.country[3].probability;
+
+                huEle.innerHTML = data.country[4].country_id;
+                huElePro.innerHTML = data.country[4].probability;
+            })
+        }
+        
+    </script>
+
+</body>
+</html>
