@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="tailwind.js"></script>
+</head>
+<body class="flex justify-center">
+    <div class="container w-96 h-96 bg-slate-300 border-4 border-black">
+        <h2 class="text-4xl flex justify-center items-center font-bold text-sky-900 h-28"> Counter </h2>
+        <div class="text-8xl font-semibold justify-center pl-36" id="counter">0</div>
+        <div class="flex mt-11">
+        <button class="flex-1 border-2 ml-3 rounded-md border-black" id="decrease-btn">Decrease</button>
+        <button class="flex-1 border-2 ml-3 rounded-md border-black" id="reser-btn">Reset</button>
+        <button class="flex-1 border-2 ml-3 rounded-md border-black mr-3" id="increase-btn">Increase</button>
+    </div>
+    </div>
+    <script>
+      //  let decrease_btn = document.getElementById("decrease-btn");
+      //  let reset_btn = document.getElementById("reset-btn");
+      //  let increase_btn = document.getElementById("increase-btn");
+      // let counter = document.getElementById("counter");
+      //  counter.innerHTML = getNumber();
+
+    class Counter{
+    number = 0;
+    constructor(){
+        document.getElementById("counter").innerHTML = localStorage.getItem("counter");
+    }
+    decrease(){
+        this.number -= 1;
+        return this.number;
+    }
+
+    increase(){
+        this.number += 1;
+        return this.number;
+    }
+
+    reset(){
+        this.number = 0;
+        return this.number;
+    }
+}
+
+var count = new Counter();
+
+
+function increase(){
+    localStorage.setItem("counter",count.increase());
+    document.getElementById("counter").innerHTML = localStorage.getItem("counter"); //get key to access and display value
+}
+function decrease(){
+    localStorage.setItem("counter",count.decrease());
+    document.getElementById("counter").innerHTML = localStorage.getItem("counter");
+}
+function reset(){
+    localStorage.setItem("counter",count.reset());
+    document.getElementById("counter").innerHTML = localStorage.getItem("counter");
+}
+document.getElementById("decrease-btn").addEventListener("click", decrease);
+document.getElementById("increase-btn").addEventListener("click", increase);
+document.getElementById("reset-btn").addEventListener("click", reset);
+
+        
+ </script>
+
+
+</body>
+</html>

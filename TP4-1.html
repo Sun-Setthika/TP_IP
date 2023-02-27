@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="tailwind.js"></script>
+    <script src="tailwind.config.js"></script>
+</head>
+<body class="flex justify-center border-4 border-black m-10">
+    <div class="container p-5 bg-slate-200">
+        <div class="flex-1">
+            <h2 class=" flex flex-1 justify-center font-bold text-sky-900"> About </h2>
+            <p class="text-xs flex justify-center text-sky-800 p-3"> Lorem ipsum dolor sit amet consecteteur adipisicing elit. Earum, aperiam!</p>
+        </div>
+        <div>
+            <img class="h-80 w-full pb-5 rounded" src="landscape.jpg">
+        </div>
+        
+        <div>
+        <div class="nav-bar flex">
+            <button id="history-btn" onclick="displayHistory()" class="flex flex-1 justify-center bg-slate-300 hover:bg-white  w-40 p-1 text-base font-semibold"> History </button>
+            <button id="vision-btn" onclick= "displayVision()" class="flex flex-1 justify-center bg-slate-300 hover:bg-white  w-40 p-1 text-base font-semibold"> Vision </button>
+            <button  id="goals-btn" onclick="displayGoals()" class="flex flex-1 justify-center bg-slate-300 hover:bg-white  w-40 p-1 text-base font-semibold"> Goals </button>
+        </div>
+        <div id="history">
+        <h5 class="flex bg-white w-full p-4 font-bold text-base"> History </h5>
+        <p class="bg-white pl-3 pb-3 text-sm text-sky-800"> I'm a baby wolf picked schlitz try-hard normcore marda man bun mumblecore vice pop-up XOXO lomo
+            kombucha glossier bicycle rights. Umami kinfolk salvia jean shorts offal venmo. Knausggardtilde try-
+            hard, woke fixie banjo man bun. Small batch tumeric maustache tbh wayfaers 8-bit shaman 
+            chartreuse tacos. Viral direct trade hoodie ugh chambray , craft beer prok belly flannel tacos single-
+            origin coffee art party migas plaid pop-up.
+        </p>
+        </div>
+        <div id="vision">
+            <h5  class="flex bg-white w-full p-4 font-bold text-base"> Vision </h5>
+            <p class="bg-white pl-3 pb-3 text-sm text-sky-800"> Man bun PBR&B keytar copper mug prism, hell of helvetica. Synth crucifix offal deep v hella biodiesel.
+                Chruch-key listicle polaroid put a bird on it chillwave palo santo enamel pin,tattooed meggings
+                franzen la croix cray. Retro yr aesthetic four loko tbh helvetica air plant, neutra palo santo tofu
+                mumblecore. Hoodie bushwick pour-oven jean shorts chartreuse shabby chic. Roof party hammock
+                master cleanse pop-up traffaut, bicycle rights skateboard affogato readymade sustainable deep v
+                live-edge schitz narwhal.
+            </p>
+        </div>
+        <div id="goals">
+            <h5 class="flex bg-white w-full p-4 font-bold text-base"> Goals </h5>
+            <p class="bg-white pl-3 pb-3 text-sm text-sky-800"> Roof party hammock master cleanse pop-up traffaut, bicycle rights skateboard affogato readymade sustainable 
+                deep v live-edge schitz narwhal.Small batch tumeric maustache tbh wayfaers 8-bit shaman 
+                chartreuse tacos. Viral direct trade hoodie ugh chambray , craft beer prok belly flannel tacos single-
+                origin coffee art party migas plaid pop-up.
+
+            </p>
+        </div>
+    </div>
+</div>
+    <script> 
+        let history = document.getElementById("history");
+        let vision = document.getElementById("vision");
+        let goals = document.getElementById("goals");
+        let history_btn = document.getElementById("history-btn"); 
+        let vision_btn = document.getElementById("vision-btn");
+        let goals_btn = document.getElementById("goals-btn");
+
+      //  history.style.display = 'none';
+        history_btn.style.backgroundColor = 'white';
+        vision.style.display = 'none';
+        goals.style.display = 'none';
+        
+
+        function displayHistory(){
+             
+        history.style.display = 'inherit';
+        vision.style.display = 'none';
+        goals.style.display = 'none';
+        }
+
+        function displayVision(){
+            
+        history.style.display = 'none';
+        vision.style.display = 'inherit';
+        goals.style.display = 'none';
+        }
+
+        function displayGoals(){
+        history.style.display = 'none';
+        vision.style.display = 'none';
+        goals.style.display = 'inherit';
+        }
+
+        history_btn.addEventListener('click', function onclick(){
+            history_btn.style.backgroundColor = 'white';
+            vision_btn.style.backgroundColor = 'inherit';
+            goals_btn.style.backgroundColor = 'inherit';
+        });   
+
+        vision_btn.addEventListener('click', function onclick(){
+            vision_btn.style.backgroundColor = 'white';
+            history_btn.style.backgroundColor = 'inherit';
+            goals_btn.style.backgroundColor = 'inherit';
+        });  
+
+        goals_btn.addEventListener('click', function onclick(){
+            vision_btn.style.backgroundColor = 'inherit';
+            history_btn.style.backgroundColor = 'inherit';
+            goals_btn.style.backgroundColor = 'white';
+            
+        });
+
+        
+</script>
+</body>
+</html>

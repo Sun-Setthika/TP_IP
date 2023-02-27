@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation Bar</title>
+    <script src="tailwind.js"></script>
+    <link href="https://use.fontawesome.com/releases/v6.2.1/css/all.css" rel="stylesheet">
+</head>
+
+<body class="w-screen px-[5px]">
+    <div class="w-full h-[550px] border-4 border-solid border-black bg-slate-200">
+        <div class="flex items-center bg-white mx-[10px] mt-[8px] px-[15px] py-[10px] justify-between">
+            <div class="text-[24px] font-semibold">NAV-BAR</div>
+            <div class="flex gap-4 max-[550px]:hidden">
+                <div class="text-slate-600 text-[15px]">Home</div>
+                <div class="text-slate-600 text-[15px]">About</div>
+                <div class="text-slate-600 text-[15px]">Projects</div>
+                <div class="text-slate-600 text-[15px]">Contact</div>
+            </div>
+
+            <!-- icons -->
+            <div class="flex gap-3 max-[550px]:hidden">
+                <i class="fa-brands fa-facebook text-sky-500"></i>
+                <i class="fa-brands fa-twitter text-sky-500"></i>
+                <i class="fa-brands fa-behance text-sky-500"></i>
+                <i class="fa-brands fa-linkedin text-sky-500"></i>
+                <i class="fa-solid fa-gem text-sky-500"></i>
+            </div>
+
+            <div id="bar-container" class="min-[550px]:hidden">
+                <i id="bar-icon" type="button" class="fa-solid fa-bars text-[22px] hover:text-sky-500"></i>
+            </div>
+        </div>
+        <div id="pop-navbar" class="bg-white px-[15px] py-[10px] mx-[10px]"></div>
+    </div>
+
+
+    <script>
+        let barIcon = document.getElementById("bar-icon");
+        let barContainer = document.getElementById("bar-container");
+        let popNavbar = document.getElementById("pop-navbar")
+
+        barIcon.addEventListener("click", () => {
+            barIcon.style.color = "rgb(59 130 246)";
+            barIcon.style.display = "none";
+
+            var icon = document.createElement("i");
+            icon.className = "fa-solid fa-bars"
+            icon.id = "bar-icon-y";
+            icon.style.transform = "rotate(90deg)";
+            icon.style.fontSize = "22px";
+            icon.style.color = "rgb(59 130 246)"
+
+            barContainer.appendChild(icon);
+            
+            let popNavbarContain = `
+                <div class="text-slate-600 text-[15px]">Home</div>
+                <div class="text-slate-600 text-[15px] mt-[10px]">About</div>
+                <div class="text-slate-600 text-[15px] mt-[10px]">Projects</div>
+                <div class="text-slate-600 text-[15px] mt-[10px]">Contact</div>
+            `;
+
+            popNavbar.innerHTML = popNavbarContain
+            //popNavbar.style.display = 'inherit';
+
+            icon.addEventListener("click", () => { //go to back to original state
+                barIcon.style.display = "inherit";
+                barIcon.style.color = "inherit";
+                icon.style.display = "none";
+                // popNavbar.style.display = 'none';
+                popNavbar.innerHTML = ''; //we can do it by display none or '';
+            })
+        })
+    </script>
+</body>
+
+</html>

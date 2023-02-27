@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Generator</title>
+    <script src="tailwind.js"></script>
+</head>
+
+<body class="w-screen flex justify-center">
+    <div class="bg-slate-200 w-[400px] h-[550px] border-4 border-black border-solid flex justify-center items-center">
+        <div class="flex items-center flex-col w-[95%] h-[95%]">
+            <div class="inline-block text-sky-600  text-[14px] bg-white w-full px-[15px] py-[10px] font-bold">
+                Random Color Generator
+            </div>
+            <div class="w-full h-full" id="container">
+                <div class="bg-black font-bold flex justify-center items-center flex-col py-3 text-2xl mb-[30px] mt-2 mx-2">
+                    <div class="text-center text-white">
+                        Background Color:
+                    </div>
+                    <div class="text-sky-500" id="display-color-code"></div>
+                </div>
+                <div class="flex justify-center gap-3">
+                    <button class="border border-solid border-black rounded-md px-[12px] py-[2px]" id="generator-btn">GENERATOR</button>
+                    <button class="border border-solid border-black rounded-md px-[12px] py-[2px]" id="reset-btn">RESET</button>
+                </div>
+                <div class="bg-white h-52 mt-[10px] text-base font-medium overflow-y-scroll" 
+                    id="display-all-color-code">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let container = document.getElementById("container");
+        let colorCode = document.getElementById("display-color-code");
+        let allColorCode = document.getElementById("display-all-color-code");
+
+        let generatorBtn = document.getElementById("generator-btn");
+        let resetBtn = document.getElementById("reset-btn");
+        let id = findMaxId();
+        let colors = getColor(); //get to display on screen
+
+        function generateColor() {
+            const random = Math.floor(Math.random() * 16777215).toString(16); //base 16
+            const randomColor = "#" + random;
+
+            return randomColor;
+        }
+
+        generatorBtn.addEventListener("click", () => {
+            generatorBtn.style.backgroundColor = 'black';
+            resetBtn.style.backgroundColor = 'inherit';
+
+            generatorBtn.style.color = 'white';
+            resetBtn.style.color = 'inherit';
+
+            let randomColor = generateColor();
+            colors.unshift(randomColor); //add colors to the beginning of the array
+            if (findMaxId() == -1) {
+                id = -1;
+            }
+            id++;
+            localStorage.setItem(id, randomColor);
+
+            //container.style.backgroundColor = randomColor;
+
+           displayColor(); //display color id 
+        })
+
+        resetBtn.addEventListener("click", () => {
+            generatorBtn.style.backgroundColor = 'inherit';
+            resetBtn.style.backgroundColor = 'black';
+
+            generatorBtn.style.color = 'inherit';
+            resetBtn.style.color = 'white';
+
+            localStorage.clear();
+            colors = [];
+            id = 0;
+            container.style.backgroundColor = "white";
+
+            displayColor();
+        })
+        
+        function getColor() {
+            let list = []
+            let max = findMaxId();
+
+            for (let i = max; i >= 0; i--) {
+                list.push(localStorage.getItem(i));
+            }
+
+            return list;
+        }
+
+        // use to keep track what is our last id (it have the bigeest value as I increase it each time we generate a color)
+        function findMaxId() {
+            let max = -1; // id are not small then -1
+
+            for (let i = 0; i < localStorage.length; i++) {
+                let string = localStorage.key(i);
+                if (max < parseInt(string)) {
+                    max = parseInt(string);
+                }
+            }
+            return max;
+        }
+
+        function displayColor() {
+            let listColor = '';
+
+            colors.forEach((color) => { 
+                listColor += `
+                    <div class="">
+                        <p class="inline-block w-[60px]">${color}</p>
+                        <div class="inline-block bg-[${color}] w-[14px] h-[14px]"></div>   
+                    <div>
+                `
+            });  //display color(store id of random color) and a small cube of color
+            let currentColor = '';
+            colorCode.innerHTML = localStorage.getItem(findMaxId());//display just the color code
+
+            allColorCode.innerHTML = listColor;
+            container.style.backgroundColor = localStorage.getItem(findMaxId()); //display container color
+        }
+
+        displayColor();
+    </script>
+</body>
+
+</html>

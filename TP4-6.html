@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Responsive Navbar</title>
+	<link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+    background-color: aliceblue;
+  
+}
+
+.container {
+	display: flex;
+	min-height: 100vh;
+
+}
+
+
+.sidebar {
+	flex: 1 1 0;
+	max-width: 300px;
+	padding: 2rem 1rem;
+	background-color: white;
+}
+
+.sidebar h3 {
+	color: #707793;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	margin-bottom: 0.5em;
+    background-color: white;
+}
+
+.sidebar .menu {
+	margin: 0 -1rem;
+}
+
+.sidebar .menu .menu-item {
+	display: block;
+	padding: 1em;
+	color: white;
+	text-decoration: none;
+	transition: 0.2s linear;
+    color: black;
+    background-color: white;
+}
+
+.sidebar .menu .menu-item:hover,
+.sidebar .menu .menu-item.is-active {
+	color: gray;
+
+}
+	.menu-toggle {
+		display: block;
+	}
+	.content {
+		padding-top: 8rem;
+	}
+	.sidebar {
+		position: fixed;
+		top: 0;
+		left: -300px;
+		height: 100vh;
+		width: 100%;
+		max-width: 300px;
+		transition: 0.2s linear;
+	}
+
+	.sidebar.is-active {
+		left: 0;
+        background-color: white;
+	}
+
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div class="menu-toggle">
+            <button>
+                <i class="fa fa-bars"></i>
+             </button>
+		</div>
+
+		<aside class="sidebar">
+			<h3>Menu</h3>
+			
+			<nav class="menu">
+				<a href="#" class="menu-item">Home</a>
+				<a href="#" class="menu-item">About</a>
+				<a href="#" class="menu-item">Projects</a>
+				<a href="#" class="menu-item">Contact</a>
+			</nav>
+
+		</aside>
+
+		
+	</div>
+
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			// menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');  
+		});
+	</script>
+</body>
+</html>
